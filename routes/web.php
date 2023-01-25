@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,55 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$taskList = [
-    'first' => 'Eat',
-    'second' => 'Work',
-    'third' => 'play'
-];
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('test', function(){
-    return view('test');
-});
-
-Route::get('/hello', function(){
-    // return response() -> json ([ ]);
-    $dataArray = [
-        'message' => 'Hello world',
-        'test' => 'testing'
-    ];
-    return ddd($dataArray);
-
-});
-
-Route::get('/tasks', function() use ($taskList){
-    if (request()->search) {
-        return $taskList[request()->search];
-    } else {
-    return $taskList;
-    }
-});
-
-Route::get('/tasks/{param}', function($param) use ($taskList){
-    return $taskList[$param];
-});
-
-Route::post('/tasks/{key}', function($key) use ($taskList){
-    //return request()->all();
-    $taskList[request()->key] = request()->task;
-    return $taskList;
-});
-
-Route::patch('/tasks/{key}', function($key) use ($taskList){
-    $taskList[$key] = request()->task;
-    return $taskList;
-});
-
-Route::delete('/tasks/{key}', function($key) use ($taskList) {
-    unset($taskList[$key]);
-    return $taskList;
-});
+Route::get('/tasks',[TaskController::class, 'index']);
+Route::get('/tasks/{param}', [TaskController::class, 'show']); //show
+Route::post('/tasks', [TaskController::class, 'store']); // store
+Route::patch('/tasks/{key}', [TaskController::class, 'update']); // update
+Route::delete('/tasks/{key}', [TaskController::class, 'delete']); //delete
 
