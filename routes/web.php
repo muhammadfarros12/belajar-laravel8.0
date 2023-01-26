@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/tasks',[TaskController::class, 'index']);
-Route::get('/tasks/{param}', [TaskController::class, 'show']); //show
+Route::get('/tasks/{id}', [TaskController::class, 'show']); //show
 Route::post('/tasks', [TaskController::class, 'store']); // store
-Route::patch('/tasks/{key}', [TaskController::class, 'update']); // update
-Route::delete('/tasks/{key}', [TaskController::class, 'delete']); //delete
+Route::patch('/tasks/{id}', [TaskController::class, 'update']); // update
+Route::delete('/tasks/{id}', [TaskController::class, 'delete']); //delete
 
