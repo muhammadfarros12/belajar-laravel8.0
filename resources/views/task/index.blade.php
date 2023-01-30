@@ -21,6 +21,10 @@
             </div>
         </div>
         @endforeach
-        
+
+        <br>
+        {{ $data->links('pagination::bootstrap-4') }}
+        {{-- other pagination layout --}}
+        {{-- php artisan vendor:publish --tag=laravel-pagination --}}
    </div>
 @endsection
