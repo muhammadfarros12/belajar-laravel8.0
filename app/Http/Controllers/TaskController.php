@@ -17,7 +17,9 @@ class TaskController extends Controller
             return $task;
         }
         $task = Task::all();
-        return $task;
+        return view('task.index', [
+            'data' => $task
+        ]);
         
     }
 
