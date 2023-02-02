@@ -56,8 +56,3 @@
     </div>
 </div>
 @endsection
-
-User
-email
-password
-confirm pass
